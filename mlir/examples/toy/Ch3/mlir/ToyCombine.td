@@ -29,6 +29,9 @@ include "toy/Ops.td"
 // Basic Pattern-Match and Rewrite
 //===----------------------------------------------------------------------===//
 
+// Transpose(Transpose(x)) = x
+def TransposeTransposePattern: Pat<(TransposeOp(TransposeOp $arg)), (replaceWithValue $arg)>;
+
 // Reshape(Reshape(x)) = Reshape(x)
 def ReshapeReshapeOptPattern : Pat<(ReshapeOp(ReshapeOp $arg)),
                                    (ReshapeOp $arg)>;
